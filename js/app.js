@@ -35,7 +35,7 @@ var Swigod;
                 const dt = (amser - amserDiwethaf) / 1000; // cymryd y gwahaniaeth mewn amser a troi o milieiliadau i eiliadau
                 const tyfiant = 0.4 * dt;
                 for (let i = 0; i < cylchoedd.length; i++) {
-                    const radiwsNewydd = (cylchoedd[i].cylchedd + cylchoedd[i].cylchedd * tyfiant) / (Math.PI * 2);
+                    const radiwsNewydd = Math.sqrt((cylchoedd[i].arwynebedd + cylchoedd[i].arwynebedd * tyfiant) / Math.PI);
                     const cylchNewydd = new Swigod.Cylch(cylchoedd[i].lleoliad, radiwsNewydd);
                     // defnyddio os dim yn gwrthdaro, fel arall creu un newydd
                     if (cylchoedd.every((c, j) => j === i || !c.ynGwrthdaro(cylchNewydd))) {
@@ -64,6 +64,9 @@ var Swigod;
         }
         get cylchedd() {
             return Math.PI * 2 * this.radiws;
+        }
+        get arwynebedd() {
+            return Math.PI * this.radiws * this.radiws;
         }
         ynGwrthdaro(cylch) {
             const pellter = this.lleoliad.pellterI(cylch.lleoliad);

@@ -7,6 +7,10 @@ namespace Swigod {
             return Math.PI*2*this.radiws;
         }
 
+        get arwynebedd() : number {
+            return Math.PI*this.radiws*this.radiws;
+        }
+
         ynGwrthdaro(cylch : Cylch) : boolean {
             const pellter = this.lleoliad.pellterI(cylch.lleoliad);
             return pellter <= this.radiws + cylch.radiws;

@@ -42,7 +42,7 @@ namespace Swigod {
                 const tyfiant = 0.4 * dt;
 
                 for (let i=0 ; i<cylchoedd.length ; i++) {
-                    const radiwsNewydd = (cylchoedd[i].cylchedd + cylchoedd[i].cylchedd*tyfiant) / (Math.PI*2);
+                    const radiwsNewydd = Math.sqrt((cylchoedd[i].arwynebedd + cylchoedd[i].arwynebedd*tyfiant) / Math.PI);
                     const cylchNewydd = new Cylch(cylchoedd[i].lleoliad, radiwsNewydd);
                     // defnyddio os dim yn gwrthdaro, fel arall creu un newydd
                     if (cylchoedd.every( (c, j) => j === i || !c.ynGwrthdaro(cylchNewydd))) {
