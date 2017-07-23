@@ -37,12 +37,14 @@ namespace Swigod {
                 cylchoedd.push(cylch);
             }
 
+            const tyfiantYrEiliad = Math.PI*(40*40); // cylch gyda radiws o 40
+
             const diweddaru = (amserDiwethaf : number, amser : number) : void => {
                 const dt = (amser - amserDiwethaf)/1000; // cymryd y gwahaniaeth mewn amser a troi o milieiliadau i eiliadau
-                const tyfiant = 0.4 * dt;
+                const tyfiant = tyfiantYrEiliad * dt;
 
                 for (let i=0 ; i<cylchoedd.length ; i++) {
-                    const radiwsNewydd = Math.sqrt((cylchoedd[i].arwynebedd + cylchoedd[i].arwynebedd*tyfiant) / Math.PI);
+                    const radiwsNewydd = Math.sqrt((cylchoedd[i].arwynebedd + tyfiant) / Math.PI);
                     const cylchNewydd = new Cylch(cylchoedd[i].lleoliad, radiwsNewydd);
                     // defnyddio os dim yn gwrthdaro, fel arall creu un newydd
                     if (cylchoedd.every( (c, j) => j === i || !c.ynGwrthdaro(cylchNewydd))) {
